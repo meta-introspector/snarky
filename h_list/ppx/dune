@@ -4,5 +4,5 @@
  (kind ppx_deriver)
  (libraries ppxlib base)
  (preprocess
-  (pps ppxlib.metaquot))
+  (pps ppx_mina_introspector ppxlib.metaquot))
  (ppx_runtime_libraries h_list))

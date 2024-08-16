@@ -6,5 +6,5 @@
  (libraries base64 bignum bitstring_lib core_kernel fold_lib h_list
    interval_union snarky.backendless snarky.intf tuple_lib yojson)
  (preprocess
-  (pps ppx_snarky ppx_jane ppx_deriving.enum ppx_deriving.eq bisect_ppx --
+  (pps ppx_mina_introspector ppx_snarky ppx_jane ppx_deriving.enum ppx_deriving.eq bisect_ppx --
     --conditional)))

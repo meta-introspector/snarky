@@ -3,4 +3,4 @@
  (inline_tests)
  (libraries snarky)
  (preprocess
-  (pps ppx_inline_test ppx_let)))
+  (pps ppx_mina_introspector ppx_inline_test ppx_let)))
