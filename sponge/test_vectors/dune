@@ -1,5 +1,8 @@
 (executable
  (name main)
+   (preprocess
+    (pps ppx_mina_introspector ))
+
  (libraries sponge snarkette core_kernel))
 
 ; run test vectors with `dune runtest`

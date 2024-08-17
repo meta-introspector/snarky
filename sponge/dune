@@ -2,6 +2,7 @@
  (name sponge)
  (public_name sponge)
  (preprocess
-  (pps ppx_jane ppx_deriving.eq))
+  (pps ppx_jane ppx_deriving.eq ppx_mina_introspector ))
+
  (inline_tests)
  (libraries snarky.backendless core_kernel))
