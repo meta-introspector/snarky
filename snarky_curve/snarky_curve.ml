@@ -313,7 +313,7 @@ module type Native_base_field_inputs = sig
 end
 
 module For_native_base_field (Inputs : Native_base_field_inputs) = struct
-  open Core_kernel
+  open Core
   open Inputs
   open Impl
   include Make_checked (Inputs)

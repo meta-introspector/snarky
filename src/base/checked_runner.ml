@@ -1,4 +1,4 @@
-open Core_kernel
+open Core
 module Constraint0 = Constraint
 
 let stack_to_string = String.concat ~sep:"\n"
@@ -264,7 +264,7 @@ struct
             | None ->
                 failwith
                   ( "Unhandled request: "
-                  ^ Core_kernel.String.concat ~sep:"\n" (Run_state.stack s) )
+                  ^ Core.String.concat ~sep:"\n" (Run_state.stack s) )
           in
           Run_state.set_as_prover s old ;
           let var =

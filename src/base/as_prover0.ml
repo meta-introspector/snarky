@@ -1,4 +1,4 @@
-open Core_kernel
+open Core
 
 type ('a, 'f) t = ('a, 'f) Types.As_prover.t
 

@@ -89,7 +89,7 @@ let basic_of_sexp = Basic.t_of_sexp
 let sexp_of_basic = Basic.sexp_of_t
 
 let () =
-  let unhandled s = Core_kernel.failwithf "%s: non-basic constraint" s () in
+  let unhandled s = Core.failwithf "%s: non-basic constraint" s () in
   let module Essential = struct
     type 'var t =
       | Boolean of 'var

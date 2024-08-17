@@ -1,4 +1,4 @@
-open Core_kernel
+open Core
 module Cvar0 = Cvar
 module Bignum_bigint = Bigint
 
@@ -344,7 +344,7 @@ struct
             in
             let%bind alpha = unpack alpha_packed ~length:Int.(bit_length + 1) in
             let prefix, less_or_equal =
-              match Core_kernel.List.split_n alpha bit_length with
+              match Core.List.split_n alpha bit_length with
               | p, [ l ] ->
                   (p, l)
               | _ ->
@@ -532,7 +532,7 @@ struct
     let equal_expect_true t1 t2 =
       let open Checked in
       all
-        (Core_kernel.List.map (chunk_for_equality t1 t2) ~f:(fun (x1, x2) ->
+        (Core.List.map (chunk_for_equality t1 t2) ~f:(fun (x1, x2) ->
              (* Inlined [Field.equal], but skip creating the field element for
                 this chunk if possible.
              *)
@@ -543,14 +543,14 @@ struct
                  ~compute:
                    As_prover.(
                      match
-                       Core_kernel.List.map2 x1 x2 ~f:(fun x1 x2 ->
+                       Core.List.map2 x1 x2 ~f:(fun x1 x2 ->
                            let%map x1 = read_var (x1 :> Cvar.t)
                            and x2 = read_var (x2 :> Cvar.t) in
                            Field.equal x1 x2 )
                      with
                      | Ok res ->
                          let%bind res = all res in
-                         if Core_kernel.List.for_all ~f:Fn.id res then
+                         if Core.List.for_all ~f:Fn.id res then
                            return (Field.one, Field.zero)
                          else equal_vars z
                      | _ ->
@@ -600,7 +600,7 @@ struct
     let else_, else_aux = typ.var_to_fields else_ in
     let%bind res =
       Array.all
-        (Core_kernel.Array.map2_exn then_ else_ ~f:(fun then_ else_ ->
+        (Core.Array.map2_exn then_ else_ ~f:(fun then_ else_ ->
              if_ b ~then_ ~else_ ) )
     in
     let%map res_aux =
@@ -632,7 +632,7 @@ struct
       in
       checked_result
 
-    let test_equal (type a) ?(sexp_of_t = sexp_of_opaque) ?(equal = Caml.( = ))
+    let test_equal (type a) ?(sexp_of_t = sexp_of_opaque) ?(equal = Stdlib.( = ))
         typ1 typ2 checked unchecked input =
       let checked_result = checked_to_unchecked typ1 typ2 checked input in
       let sexp_of_a = sexp_of_t in
@@ -798,7 +798,7 @@ module Run = struct
 
     let constant (Typ typ : _ Typ.t) x =
       let fields, aux = typ.value_to_fields x in
-      let field_vars = Core_kernel.Array.map ~f:Cvar.constant fields in
+      let field_vars = Core.Array.map ~f:Cvar.constant fields in
       typ.var_of_fields (field_vars, aux)
 
     module Boolean = struct
@@ -1409,7 +1409,7 @@ module Run = struct
         match (Run_state.has_witness s, values_to_witness) with
         (* in compile mode, we return empty vars *)
         | false, None ->
-            Core_kernel.Array.init size_to_witness ~f:(fun _ ->
+            Core.Array.init size_to_witness ~f:(fun _ ->
                 Run_state.alloc_var s () )
         (* in prover mode, we expect values to turn into vars *)
         | true, Some values_to_witness ->
@@ -1419,7 +1419,7 @@ module Run = struct
               if old_as_prover then Field.constant
               else Run_state.store_field_elt s
             in
-            Core_kernel.Array.map values_to_witness ~f:store_value
+            Core.Array.map values_to_witness ~f:store_value
         (* the other cases are invalid *)
         | false, Some _ ->
             failwith "Did not expect values to witness"

@@ -1,4 +1,6 @@
-open Core_kernel
+open Unix
+open Core
+
 
 type test_vector = { input : string list; output : string }
 
@@ -19,7 +21,7 @@ let parse_test_vectors filepath =
 
 (* legacy test vectors *)
 let () =
-  let cur_dir = Sys.getcwd () in
+  let cur_dir = getcwd () in
   let test_vector_file = Filename.concat cur_dir "legacy.json" in
   let test_vectors = parse_test_vectors test_vector_file in
   assert (String.equal test_vectors.name "legacy") ;
@@ -31,7 +33,7 @@ let () =
 
 (* kimchi test vectors *)
 let () =
-  let cur_dir = Sys.getcwd () in
+  let cur_dir = getcwd () in
   let test_vector_file = Filename.concat cur_dir "kimchi.json" in
   let test_vectors = parse_test_vectors test_vector_file in
   assert (String.equal test_vectors.name "kimchi") ;

@@ -1,4 +1,4 @@
-open Core_kernel
+open Core
 
 let int_to_bits ~length n =
   let ith_bit i = (n lsr i) land 1 = 1 in

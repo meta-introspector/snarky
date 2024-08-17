@@ -1,4 +1,4 @@
-open Core_kernel
+open Core
 
 module Extended_projective = struct
   type 'a t = { x : 'a; y : 'a; z : 'a; t : 'a } [@@deriving sexp]

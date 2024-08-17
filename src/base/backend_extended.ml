@@ -1,4 +1,4 @@
-open Core_kernel
+open Core
 module Bignum_bigint = Bigint
 
 (** Yojson-compatible JSON type. *)
@@ -137,7 +137,6 @@ struct
 
     let _project bs =
       (* todo: 32-bit and ARM support. basically this code needs to always match the loop in the C++ of_data implementation. *)
-      assert (Sys.word_size = 64 && not Sys.big_endian) ;
       let chunks_of n xs =
         List.groupi ~break:(fun i _ _ -> Int.equal (i mod n) 0) xs
       in

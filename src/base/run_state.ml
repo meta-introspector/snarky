@@ -1,5 +1,5 @@
 module Vector = struct
-  open Core_kernel
+  open Core
 
   type 'elt t =
     | T :

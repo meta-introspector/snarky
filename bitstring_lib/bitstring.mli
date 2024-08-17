@@ -1,4 +1,4 @@
-open Core_kernel
+open Core
 open Tuple_lib
 
 module type S = sig

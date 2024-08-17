@@ -1,4 +1,4 @@
-open Core_kernel
+open Core
 
 module Address = struct
   type t = int
@@ -18,7 +18,7 @@ module Free_hash = struct
           None
       | Hash_value x, Hash_value y ->
           (* poly equality; we don't know type of x and y *)
-          if Caml.( = ) x y then None else raise (M.Done path)
+          if Stdlib.( = ) x y then None else raise (M.Done path)
       | Merge (l1, r1), Merge (l2, r2) ->
           ignore (go (false :: path) l1 l2) ;
           ignore (go (true :: path) r1 r2) ;
@@ -69,11 +69,11 @@ let check_exn { tree; hash; merge; _ } =
   and check_hash_non_empty = function
     | Leaf (h, x) ->
         (* poly equality; don't know the hash type *)
-        assert (Caml.( = ) h (hash (Some x))) ;
+        assert (Stdlib.( = ) h (hash (Some x))) ;
         h
     | Node (h, l, r) ->
         (* poly equality *)
-        assert (Caml.( = ) (merge (check_hash l) (check_hash r)) h) ;
+        assert (Stdlib.( = ) (merge (check_hash l) (check_hash r)) h) ;
         h
   in
   ignore (check_hash_non_empty tree)

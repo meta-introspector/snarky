@@ -1,4 +1,4 @@
-open Core_kernel
+open Core
 open Types.Typ
 
 module Data_spec0 = struct

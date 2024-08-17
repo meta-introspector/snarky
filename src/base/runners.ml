@@ -1,4 +1,4 @@
-open Core_kernel
+open Core
 module Types0 = Types
 
 module Make
@@ -194,7 +194,7 @@ struct
             ; _
             } =
           var_of_fields
-            ( Core_kernel.Array.init size_in_field_elements ~f:(fun _ ->
+            ( Core.Array.init size_in_field_elements ~f:(fun _ ->
                   alloc_var next_input () )
             , constraint_system_auxiliary () )
         in
@@ -315,7 +315,7 @@ struct
         let input_var = var_of_fields (fields, aux) in
         let output_var =
           return_typ.var_of_fields
-            ( Core_kernel.Array.init return_typ.size_in_field_elements
+            ( Core.Array.init return_typ.size_in_field_elements
                 ~f:(fun _ -> alloc_var next_input ())
             , return_typ.constraint_system_auxiliary () )
         in

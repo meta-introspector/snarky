@@ -1,4 +1,4 @@
-open Core_kernel
+open Core
 module Cvar0 = Cvar
 module Runner = Checked_runner
 
@@ -304,7 +304,7 @@ struct
     let ( lxor ) b1 b2 =
       match (to_constant b1, to_constant b2) with
       | Some b1, Some b2 ->
-          return (constant typ (Caml.not (Bool.equal b1 b2)))
+          return (constant typ (Stdlib.not (Bool.equal b1 b2)))
       | Some true, None ->
           return (not b2)
       | None, Some true ->

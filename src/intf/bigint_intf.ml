@@ -11,11 +11,11 @@ end
 module type Extended = sig
   include S
 
-  include Core_kernel.Binable.S with type t := t
+  include Core.Binable.S with type t := t
 
   val to_field : t -> field
 
-  val of_data : Core_kernel.Bigstring.t -> bitcount:int -> t
+  val of_data : Core.Bigstring.t -> bitcount:int -> t
 
   val length_in_bytes : int
 

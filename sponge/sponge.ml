@@ -1,4 +1,4 @@
-open Core_kernel
+open Core
 module Intf = Intf
 
 module Params = struct
@@ -340,7 +340,7 @@ struct
   (* In sponge debug mode, prints a standard sponge debug line, otherwise does nothing.
      Note: standard sponge debug line must match the output of Kimchi's sponge debug mode *)
   let debug (operation : string) (sponge : t) (input : P.Field.t option) =
-    match Sys.getenv_opt P.sponge_name with
+    match Sys.getenv P.sponge_name with
     | Some s -> (
         match String.lowercase s with
         | "t" | "1" | "true" ->

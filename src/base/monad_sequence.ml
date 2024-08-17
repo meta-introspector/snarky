@@ -1,4 +1,4 @@
-open Core_kernel
+open Core
 
 (** Helpers for operating over a sequence of data (currently, either an array
     or a list) inside of a monad.

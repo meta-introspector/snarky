@@ -1,6 +1,6 @@
 (* Based on this paper. https://eprint.iacr.org/2019/403 *)
 
-open Core_kernel
+open Core
 
 module Spec = struct
   type 'f t = { b : 'f } [@@deriving bin_io]
