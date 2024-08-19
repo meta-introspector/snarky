@@ -2,7 +2,7 @@
  (name group_map)
  (public_name group_map)
 (preprocess
-  (pps ppx_mina_introspector ppx_jane ppx_deriving.eq))
+  (staged_pps  ppx_jane ppx_deriving.eq ppx_mina_introspector))
  (inline_tests)
  (libraries
   snarkette ; This is actually just needed in tests

@@ -2,7 +2,7 @@
  (name snarky_curve)
  (public_name snarky_curve)
  (preprocess
-  (pps ppx_mina_introspector ppx_jane ppx_deriving.eq))
+  (staged_pps  ppx_jane ppx_deriving.eq ppx_mina_introspector))
 
  (inline_tests)
  (libraries snarky.backendless digestif group_map core_kernel))

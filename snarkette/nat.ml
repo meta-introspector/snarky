@@ -1,7 +1,8 @@
 open Core
-
+open Ppx_yojson_conv_lib.Yojson_conv.Primitives
 type t = Big_int.big_int
 
+let t_of_yojson _ = Big_int.zero_big_int
 let equal = Big_int.eq_big_int
 
 let num_bits = Big_int.num_bits_big_int
@@ -66,13 +67,15 @@ let hash t = Stdlib.Hashtbl.hash t
 
 let hash_fold_t h t = hash_fold_int h (hash t)
 
-let to_yojson t = `String (to_string t)
+let yojson_of_t _ = yojson_of_string "todo"
+(* let t_yojson _ = yojson_of_string "todo" *)
+(* let to_yojson _ = of_string "todo" *)
 
-let of_yojson = function
-  | `String s ->
-      Ok (of_string s)
-  | _ ->
-      Error "Nat.of_yojson: Expected string"
+(* let of_yojson = function *)
+(*   | `String s -> *)
+(*       Ok (of_string s) *)
+(*   | _ -> *)
+(*       Error "Nat.of_yojson: Expected string" *)
 
 [@@@alert "-legacy"]
 

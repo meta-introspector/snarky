@@ -3,4 +3,4 @@
  (public_name snarky.intf)
  (libraries core_kernel bignum)
  (preprocess
-  (pps ppx_mina_introspector ppx_sexp_conv ppx_bin_prot ppx_hash ppx_compare)))
+  (staged_pps ppx_sexp_conv ppx_bin_prot ppx_hash ppx_compare ppx_mina_introspector )))

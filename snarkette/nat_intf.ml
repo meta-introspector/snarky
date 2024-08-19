@@ -4,7 +4,7 @@ module type S = sig
   type t [@@deriving eq, bin_io, sexp, yojson, compare, hash]
 
   include Stringable.S with type t := t
-
+  val t_of_yojson : Yojson.Safe.t -> t
   val of_int : int -> t
 
   val to_int_exn : t -> int

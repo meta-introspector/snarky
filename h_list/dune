@@ -1,7 +1,7 @@
 (library
  (name h_list)
   (preprocess
-  (pps ppx_mina_introspector ))
+  (staged_pps ppx_mina_introspector ))
 
  (public_name h_list)
  (libraries base))

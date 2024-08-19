@@ -4,4 +4,4 @@
  (kind ppx_rewriter)
  (libraries ppxlib ppx_mina_introspector core_kernel)
  (preprocess
-  (pps ppxlib.metaquot ppx_sexp_conv)))
+  (staged_pps ppxlib.metaquot ppx_sexp_conv ppx_mina_introspector)))
